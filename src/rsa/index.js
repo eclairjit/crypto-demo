@@ -16,14 +16,15 @@ function multiplicativeInverse(e, phi) {
 	if (phi !== 1) return null;
 	return y1 < 0 ? y1 + originalPhi : y1;
 }
-function isPrime(num) {
+export function isPrime(num) {
 	if (num < 2) return false;
 	for (let i = 2; i <= Math.sqrt(num); i++) {
 		if (num % i === 0) return false;
 	}
 	return true;
 }
-function generateKeypair(p, q) {
+export function generateKeypair(p, q) {
+	console.log(`P: ${p} | Q: ${q}`);
 	if (!isPrime(p) || !isPrime(q)) {
 		throw new Error("Both numbers must be prime.");
 	} else if (p === q) {
@@ -60,9 +61,9 @@ function decrypt(privateKey, ciphertext) {
 	return plain.join("");
 }
 // Example usageconst p = 61; // Example prime numberconst q = 53; // Example prime number
-const { publicKey, privateKey } = generateKeypair(p, q);
-const message = "HELLO329644368345985341";
-const encrypted = encrypt(publicKey, message);
-console.log("Encrypted message (hex):", encrypted);
-const decrypted = decrypt(privateKey, encrypted);
-console.log("Decrypted message:", decrypted);
+// const { publicKey, privateKey } = generateKeypair(p, q);
+// const message = "HELLO329644368345985341";
+// const encrypted = encrypt(publicKey, message);
+// console.log("Encrypted message (hex):", encrypted);
+// const decrypted = decrypt(privateKey, encrypted);
+// console.log("Decrypted message:", decrypted);
