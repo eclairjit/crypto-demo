@@ -149,7 +149,9 @@ const App = () => {
 
 	return (
 		<div className="container">
-			<h1>Cryptographic Configuration Simulator</h1>
+			<h1 className="font-bold mb-5 text-lg">
+				Cryptographic Configuration Simulator
+			</h1>
 
 			<div className="section">
 				<label>Algorithm Type:</label>
