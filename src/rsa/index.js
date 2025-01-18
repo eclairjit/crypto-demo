@@ -42,7 +42,7 @@ export function generateKeypair(p, q) {
 	}
 	return { publicKey: { e, n }, privateKey: { d, n } };
 }
-function encrypt(publicKey, plaintext) {
+export function encrypt(publicKey, plaintext) {
 	const { e, n } = publicKey;
 	const cipher = Array.from(plaintext).map((char) => {
 		const encryptedChar = BigInt(char.charCodeAt(0)) ** BigInt(e) % BigInt(n);
@@ -50,7 +50,7 @@ function encrypt(publicKey, plaintext) {
 	});
 	return cipher.join("");
 }
-function decrypt(privateKey, ciphertext) {
+export function decrypt(privateKey, ciphertext) {
 	const { d, n } = privateKey;
 	const chars = ciphertext.match(/.{1,4}/g) || [];
 	const plain = chars.map((hex) => {
