@@ -1,4 +1,4 @@
-import RSA from "./pages/RSA.jsx";
+import RSA from "./pages/RSA";
 
 const App = () => {
 	return <RSA />;
