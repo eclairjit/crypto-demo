@@ -1,7 +1,8 @@
 import RSA from "./pages/RSA";
+import CryptographicConfigurationSimulator from "./pages/CryptographicConfigurationSimulator";
 
 const App = () => {
-	return <RSA />;
+	return <CryptographicConfigurationSimulator />;
 };
 
 export default App;
