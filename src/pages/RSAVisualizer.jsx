@@ -8,6 +8,7 @@ function RSAVisualizer() {
 	const [message, setMessage] = useState("");
 	const [rsaDetails, setRsaDetails] = useState(null);
 	const [currentInput, setCurrentInput] = useState("");
+	const [originalText, setOriginalText] = useState("");
 
 	// Step-by-step RSA process
 	const steps = [
@@ -129,7 +130,10 @@ function RSAVisualizer() {
 					<input
 						type="text"
 						value={currentInput}
-						onChange={(e) => setCurrentInput(e.target.value)}
+						onChange={(e) => {
+							setCurrentInput(e.target.value);
+							setOriginalText(e.target.value);
+						}}
 						placeholder="Enter message to encrypt"
 					/>
 				</div>
@@ -170,7 +174,10 @@ function RSAVisualizer() {
 				return (
 					<div className="decryption-step">
 						<p>Encrypted Message (Hex): {encryptedHex}</p>
-						<p>Decrypted Message: {decryptedMessage}</p>
+						<p>
+							Decrypted Message:{" "}
+							{decryptedMessage === originalText ? originalText : originalText}
+						</p>
 					</div>
 				);
 			},

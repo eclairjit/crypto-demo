@@ -6,7 +6,7 @@ import RSAVisualizer from "./pages/RSAVisualizer.jsx";
 import RSAVizMap from "./pages/RSAVizMap.jsx";
 
 const App = () => {
-	return <RSAVizMap />;
+	return <RSAVisualizer />;
 };
 
 export default App;
