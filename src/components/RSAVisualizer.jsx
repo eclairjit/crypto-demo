@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./RSAVisualizer.css";
-import { encrypt, decrypt } from "../rsa";
+import { encrypt, decrypt } from "../utils/rsa.js";
 
 function RSAVisualizer() {
 	const [step, setStep] = useState(0);
@@ -238,11 +238,15 @@ function RSAVisualizer() {
 
 	return (
 		<div className="rsa-visualizer">
-			<h1>RSA Encryption Step-by-Step</h1>
+			<link
+				href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+				rel="stylesheet"
+			></link>
+			<h1 className="text-white">RSA Encryption Step-by-Step</h1>
 
 			<div className="current-step">
-				<h2>{steps[step].title}</h2>
-				<p>{steps[step].description}</p>
+				<h2 className="text-white">{steps[step].title}</h2>
+				<p className="text-white">{steps[step].description}</p>
 
 				{steps[step].component()}
 			</div>

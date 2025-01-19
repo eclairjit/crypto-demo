@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
+import "./CCS.css";
 
 const CryptographicConfigSimulator = () => {
 	const [algorithm, setAlgorithm] = useState("AES");
@@ -361,16 +362,15 @@ const CryptographicConfigSimulator = () => {
 	}, [algorithm]);
 
 	return (
-		<div className="container">
-			<h1 className="text-3xl font-bold mb-5">
-				Cryptographic Configuration Simulator
-			</h1>
+		<div className="container text-white">
+			<h1 className="text-3xl font-bold mb-5">Vulnerability Scanner</h1>
 
 			<div className="section">
 				<label>Algorithm Type:</label>
 				<select
 					value={algorithm}
 					onChange={(e) => setAlgorithm(e.target.value)}
+					className="text-black"
 				>
 					<option value="AES">AES</option>
 					<option value="RSA">RSA</option>
@@ -382,6 +382,7 @@ const CryptographicConfigSimulator = () => {
 			<div className="section">
 				<label>Key Length:</label>
 				<select
+					className="text-black"
 					value={keyLength}
 					onChange={(e) => setKeyLength(e.target.value)}
 				>
@@ -396,7 +397,11 @@ const CryptographicConfigSimulator = () => {
 			{configurations[algorithm]?.modes && (
 				<div className="section">
 					<label>Mode of Operation:</label>
-					<select value={mode} onChange={(e) => setMode(e.target.value)}>
+					<select
+						className="text-black"
+						value={mode}
+						onChange={(e) => setMode(e.target.value)}
+					>
 						{configurations[algorithm]?.modes?.map((mode) => (
 							<option key={mode} value={mode}>
 								{mode}
@@ -409,7 +414,11 @@ const CryptographicConfigSimulator = () => {
 			{configurations[algorithm]?.padding && (
 				<div className="section">
 					<label>Padding Scheme:</label>
-					<select value={padding} onChange={(e) => setPadding(e.target.value)}>
+					<select
+						className="text-black"
+						value={padding}
+						onChange={(e) => setPadding(e.target.value)}
+					>
 						{configurations[algorithm]?.padding?.map((pad) => (
 							<option key={pad} value={pad}>
 								{pad}
@@ -423,6 +432,7 @@ const CryptographicConfigSimulator = () => {
 				<div className="section">
 					<label>Authentication Tag Length:</label>
 					<select
+						className="text-black"
 						value={authTagLength}
 						onChange={(e) => setAuthTagLength(e.target.value)}
 					>
