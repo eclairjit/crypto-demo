@@ -7,4 +7,5 @@ Darshan Hittnalli 22JE0295
 
 <br />
 
-[Main Page](https://sphinx-landing.vercel.app/)  
+[Main Page](https://sphinx-landing.vercel.app/)
+[App Page](https://sphinx-xi.vercel.app/)
