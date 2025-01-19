@@ -3,9 +3,10 @@ import CryptographicConfigurationSimulator from "./pages/CryptographicConfigurat
 import SecurityTestingToolkit from "./pages/SecurityTestingToolkit";
 import CCS from "./pages/CCS";
 import RSAVisualizer from "./pages/RSAVisualizer.jsx";
+import RSAVizMap from "./pages/RSAVizMap.jsx";
 
 const App = () => {
-	return <RSAVisualizer />;
+	return <RSAVizMap />;
 };
 
 export default App;
