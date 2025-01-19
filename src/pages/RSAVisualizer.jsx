@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./RSAVisualizer.css";
+import { encrypt, decrypt } from "../rsa";
 
 function RSAVisualizer() {
 	const [step, setStep] = useState(0);
@@ -8,7 +9,6 @@ function RSAVisualizer() {
 	const [message, setMessage] = useState("");
 	const [rsaDetails, setRsaDetails] = useState(null);
 	const [currentInput, setCurrentInput] = useState("");
-	const [originalText, setOriginalText] = useState("");
 
 	// Step-by-step RSA process
 	const steps = [
@@ -130,10 +130,7 @@ function RSAVisualizer() {
 					<input
 						type="text"
 						value={currentInput}
-						onChange={(e) => {
-							setCurrentInput(e.target.value);
-							setOriginalText(e.target.value);
-						}}
+						onChange={(e) => setCurrentInput(e.target.value)}
 						placeholder="Enter message to encrypt"
 					/>
 				</div>
@@ -148,7 +145,10 @@ function RSAVisualizer() {
 			title: "Encryption",
 			description: "Encrypting the message",
 			component: () => {
-				const encryptedHex = encrypt(message, rsaDetails.e, rsaDetails.n);
+				const encryptedHex = encrypt(
+					{ e: rsaDetails.e, n: rsaDetails.n },
+					message
+				);
 				return (
 					<div className="encryption-step">
 						<p>Original Message: {message}</p>
@@ -165,19 +165,21 @@ function RSAVisualizer() {
 			title: "Decryption",
 			description: "Decrypting the message",
 			component: () => {
-				const encryptedHex = encrypt(message, rsaDetails.e, rsaDetails.n);
+				const encryptedHex = encrypt(
+					{ e: rsaDetails.e, n: rsaDetails.n },
+					message
+				);
 				const decryptedMessage = decrypt(
-					encryptedHex,
-					rsaDetails.d,
-					rsaDetails.n
+					{
+						d: rsaDetails.d,
+						n: rsaDetails.n,
+					},
+					encryptedHex
 				);
 				return (
 					<div className="decryption-step">
 						<p>Encrypted Message (Hex): {encryptedHex}</p>
-						<p>
-							Decrypted Message:{" "}
-							{decryptedMessage === originalText ? originalText : originalText}
-						</p>
+						<p>Decrypted Message: {decryptedMessage}</p>
 					</div>
 				);
 			},
@@ -212,35 +214,6 @@ function RSAVisualizer() {
 		return d;
 	};
 
-	// Encryption Function (using Hex)
-	const encrypt = (message, e, n) => {
-		return message
-			.split("")
-			.map((char) => {
-				const charCode = char.charCodeAt(0);
-				// Use Math.pow and modulo for encryption
-				const encrypted = BigInt(Math.pow(charCode, e) % n);
-				return encrypted.toString(16).padStart(4, "0");
-			})
-			.join("");
-	};
-
-	// Decryption Function (using Hex)
-	const decrypt = (encryptedHex, d, n) => {
-		const chars = encryptedHex.match(/.{1,4}/g) || [];
-		const decryptedText = chars
-			.map((hex) => {
-				// Use Math.pow and modulo for decryption
-				const decrypted = BigInt(Math.pow(parseInt(hex, 16), d) % n);
-				return String.fromCharCode(Number(decrypted));
-			})
-			.join("");
-
-		console.log(decryptedText);
-
-		return decryptedText;
-	};
-	// Handle Next Step
 	const handleNext = () => {
 		const currentStepObj = steps[step];
 
