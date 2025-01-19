@@ -8,4 +8,3 @@ Darshan Hittnalli 22JE0295
 <br />
 
 [Main Page](https://sphinx-landing.vercel.app/)  
-[Landing Page](https://green-career-421845.framer.app/)
